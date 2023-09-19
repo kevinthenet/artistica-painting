@@ -11,8 +11,9 @@ module.exports = {
 			transparent: 'transparent',
 			white: '#ffffff',
 			black: '#000000',
-			primary: colors.emerald,
-			secondary: colors.rose,
+			primary: colors.rose,
+			success: colors.green,
+			error: colors.red,
 		},
 		fontFamily: {
 			sans: ['Inter', 'sans-serif'],
@@ -35,6 +36,7 @@ module.exports = {
 		extend: {
 			height: {
 				'half-screen': '50vh',
+				'third-screen': '33vh',
 			}
 		},
 		keyframes: {

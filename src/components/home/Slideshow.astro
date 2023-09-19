@@ -48,7 +48,7 @@ cloudinary.config({
 let photos = [];
 
 const result: SearchResult = await cloudinary.search
-  .expression('folder:artisticapainting/*')
+  .expression('folder:artisticapainting/projects/*')
   .sort_by('height', 'desc')
   .sort_by('width', 'desc')
   .max_results(20)
@@ -58,7 +58,7 @@ photos = result.resources;
 ---
 
 <div
-  class="relative h-half-screen w-full"
+  class="h-third-screen relative w-full md:h-half-screen"
   x-data={`
   { prevImg: ${photos.length - 1},
     currentImg: 0,
@@ -76,13 +76,13 @@ photos = result.resources;
   }`}
 >
   <!-- Carousel wrapper -->
-  <div class="relative h-half-screen overflow-hidden rounded-3xl">
+  <div class="h-third-screen relative overflow-hidden rounded-3xl md:h-half-screen">
     {
       photos.map((photo, index) => (
         <div class="duration-700 ease-in-out">
           <img
             src={photo.secure_url}
-            class="absolute h-auto w-full"
+            class="absolute h-full w-full md:h-auto"
             alt="Hero slideshow picture"
             x-data={`
               { 
