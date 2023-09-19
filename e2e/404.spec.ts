@@ -1,6 +1,8 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
+export const internalLinks = ['/', '/about', '/contact', '/privacy'];
+
 test.beforeEach(async ({ page }) => {
   await page.goto('/404');
 });
@@ -42,7 +44,15 @@ test('navigating to an unknown page will render the 404 page', async ({ page }) 
     return randomString;
   };
 
-  const randomPage = generateRandomString(12);
+  let randomPage = generateRandomString(12);
+
+  if (internalLinks.includes(randomPage)) {
+    // shouldn't ever be hit, but on the one in a million,
+    // cosmic-ray-flipped-a-bit chance
+    // regenerate random page
+    randomPage = generateRandomString(12);
+  }
+
   console.log(`Navigating to: /${randomPage}`);
   await page.goto(`/${randomPage}`);
   await expect(page).toHaveTitle(/Not found/);

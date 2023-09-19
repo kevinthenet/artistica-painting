@@ -42,21 +42,23 @@ test('has "Learn More" and "Get an Estimate" buttons which lead to the about and
 });
 
 test('has a services section with collapsed category lists', async ({ page }) => {
-  const servicesSection = page.getByRole('heading', { level: 2, name: 'Services' });
+  const servicesSection = page.locator('section').filter({ hasText: 'Interior Services' });
 
   await expect(servicesSection).toBeVisible();
 
-  await expect(servicesSection.getByText('Interior Services')).toBeVisible();
+  const serviceSectionToggle = servicesSection
+    .getByRole('button')
+    .filter({ hasText: 'Interior Services' });
 
-  const toggleableService = servicesSection
-    .getByRole('listitem')
-    .filter({ hasText: 'Interior Painting' });
+  await expect(serviceSectionToggle).toBeVisible();
 
-  await expect(toggleableService).toBeHidden();
+  const service = servicesSection.getByRole('listitem').filter({ hasText: 'Interior Painting' });
 
-  await servicesSection.getByLabel('Expand Interior Services').click();
+  await expect(service).toBeHidden();
 
-  await expect(toggleableService).toBeVisible();
+  await serviceSectionToggle.click();
+
+  await expect(service).toBeVisible();
 });
 
 test('has an about us section with a "Read More" button that leads to the about page', async ({

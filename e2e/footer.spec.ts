@@ -34,7 +34,7 @@ for (const link of socialLinks) {
     const newTab = await newTabPromise;
 
     await newTab.waitForLoadState();
-    await expect(newTab).not.toHaveURL(/artisticapainting/);
+    await expect(newTab).not.toHaveURL(/artisticapainting\.com/);
   });
 }
 
@@ -47,6 +47,6 @@ for (const link of internalLinks) {
     await expect(internalLink).toBeVisible();
 
     await internalLink.click();
-    await expect(page).toHaveURL(/artisticapainting/);
+    await expect(page).toHaveURL(/artisticapainting\.com/);
   });
 }
