@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
-export const internalLinks = ['/', '/about', '/contact', '/privacy'];
+const internalLinks = ['/', '/about', '/contact', '/privacy'];
 
 test.beforeEach(async ({ page }) => {
   await page.goto('/404');
