@@ -4,7 +4,7 @@
 [![Continuous Integration (CI)](https://github.com/kevinthenet/static-site-template/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/kevinthenet/static-site-template/actions/workflows/continuous-integration.yml)
 [![Synthetic checks](https://github.com/kevinthenet/static-site-template/actions/workflows/synthetic-checks.yml/badge.svg)](https://github.com/kevinthenet/static-site-template/actions/workflows/synthetic-checks.yml)
 
-Static site template based on Artistica Painting Site.
+Static site for Artistica Painting, a painting company based out of the Bay Area established in 2013.
 
 Site is built with Astro based on the [Stone](https://astro.build/themes/details/stone/) theme and should be hosted on GitHub Pages.
 
