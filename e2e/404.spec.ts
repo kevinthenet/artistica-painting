@@ -31,7 +31,7 @@ test('has button: "Go back home" which navigates back to homepage', async ({ pag
 });
 
 test('navigating to an unknown page will render the 404 page', async ({ page }) => {
-  const generateRandomString = (myLength) => {
+  const generateRandomString = (myLength: number) => {
     const chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz';
     const randomArray = Array.from(
       { length: myLength },

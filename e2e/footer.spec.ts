@@ -17,43 +17,11 @@ test('should have some description text', async ({ page }) => {
   const footer = page.locator('footer');
 
   await expect(
-    footer.getByRole('paragraph').filter({ hasText: 'one home at a time' })
+    footer.getByRole('paragraph').filter({ hasText: 'one brushstroke at a time' })
   ).toBeVisible();
 });
 
-test('should have a clickable license number, opening a new tab to the CSLB government site', async ({
-  page,
-}) => {
-  const footer = page.locator('footer');
-
-  const licenseNumber = footer.getByLabel('License');
-  await expect(licenseNumber).toBeVisible();
-
-  const newTabPromise = page.waitForEvent('popup');
-  await licenseNumber.click();
-  const newTab = await newTabPromise;
-
-  await newTab.waitForLoadState();
-  await expect(newTab).toHaveURL(/cslb\.ca\.gov/);
-});
-
-test('should have a clickable image, opening a new tab to the BBB accreditation information', async ({
-  page,
-}) => {
-  const footer = page.locator('footer');
-
-  const bbbImage = footer.getByAltText('Better Business Bureau Accredited Business');
-  await expect(bbbImage).toBeVisible();
-
-  const newTabPromise = page.waitForEvent('popup');
-  await bbbImage.click();
-  const newTab = await newTabPromise;
-
-  await newTab.waitForLoadState();
-  await expect(newTab).toHaveURL(/bbb\.org/);
-});
-
-const socialLinks = ['Yelp', 'Houzz', 'Facebook'];
+const socialLinks = ['Facebook'];
 for (const link of socialLinks) {
   test(`should have an external link to: ${link}`, async ({ page }) => {
     const footer = page.locator('footer');

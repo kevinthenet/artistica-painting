@@ -36,28 +36,8 @@ test('should have some description text', async ({ page }) => {
   await menuToggle.click();
 
   await expect(
-    header.getByRole('paragraph').filter({ hasText: 'one home at a time' })
+    header.getByRole('paragraph').filter({ hasText: 'one brushstroke at a time' })
   ).toBeVisible();
-});
-
-test('should have a clickable license number, which opens a new tab to the CSLB government site when clicked', async ({
-  page,
-}) => {
-  const header = page.locator('header');
-
-  const menuToggle = header.getByRole('button').filter({ hasText: 'Toggle Menu' });
-  // expand header section
-  await menuToggle.click();
-
-  const licenseNumber = header.getByRole('link').filter({ hasText: 'License' });
-  await expect(licenseNumber).toBeVisible();
-
-  const newTabPromise = page.waitForEvent('popup');
-  await licenseNumber.click();
-  const newTab = await newTabPromise;
-
-  await newTab.waitForLoadState();
-  await expect(newTab).toHaveURL(/cslb\.ca\.gov/);
 });
 
 const internalLinks = ['Home', 'About', 'Contact'];

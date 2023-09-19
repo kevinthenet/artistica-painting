@@ -26,12 +26,7 @@ test('should contain a mission section', async ({ page }) => {
   const missionSection = page.locator('section').filter({ hasText: 'Our Mission' });
 
   await expect(missionSection).toBeVisible();
-  await expect(missionSection.locator('dl dt')).toContainText([
-    'Established',
-    'Projects',
-    'Concurrent Project Teams',
-    'Awards',
-  ]);
+  await expect(missionSection.locator('dl dt')).toContainText(['Established']);
 });
 
 test('should have a values section', async ({ page }) => {
