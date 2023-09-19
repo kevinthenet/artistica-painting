@@ -1,8 +1,8 @@
 # Static Site Template
 
-[![Continuous Deploy (CD)](https://github.com/kevinthenet/static-site-template/actions/workflows/continuous-deployment.yml/badge.svg)](https://github.com/kevinthenet/static-site-template/actions/workflows/continuous-deployment.yml)
-[![Continuous Integration (CI)](https://github.com/kevinthenet/static-site-template/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/kevinthenet/static-site-template/actions/workflows/continuous-integration.yml)
-[![Synthetic checks](https://github.com/kevinthenet/static-site-template/actions/workflows/synthetic-checks.yml/badge.svg)](https://github.com/kevinthenet/static-site-template/actions/workflows/synthetic-checks.yml)
+[![Continuous Deploy (CD)](https://github.com/kevinthenet/artistica-painting/actions/workflows/continuous-deployment.yml/badge.svg)](https://github.com/kevinthenet/artistica-painting/actions/workflows/continuous-deployment.yml)
+[![Continuous Integration (CI)](https://github.com/kevinthenet/artistica-painting/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/kevinthenet/artistica-painting/actions/workflows/continuous-integration.yml)
+[![Synthetic checks](https://github.com/kevinthenet/artistica-painting/actions/workflows/synthetic-checks.yml/badge.svg)](https://github.com/kevinthenet/artistica-painting/actions/workflows/synthetic-checks.yml)
 
 Static site for Artistica Painting, a painting company based out of the Bay Area established in 2013.
 
