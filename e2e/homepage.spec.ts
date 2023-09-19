@@ -19,7 +19,7 @@ test.skip('should not have any automatically detectable accessibility issues', a
 });
 
 test('has title', async ({ page }) => {
-  await expect(page).toHaveTitle('Castro Home Builders');
+  await expect(page).toHaveTitle('Artistica Painting');
 });
 
 test('has "Learn More" and "Get an Estimate" buttons which lead to the about and contact page, respectively', async ({

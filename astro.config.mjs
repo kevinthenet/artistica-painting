@@ -7,11 +7,11 @@ import compress from "astro-compress";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://castrohomebuilders.com",
+  site: "https://artisticapainting.com",
   integrations: [robotsTxt(), sitemap(), tailwind(), webmanifest({
-    name: 'Castro Home Builders',
+    name: 'Artistica Painting',
     icon: 'public/chb-logo.png',
-    description: 'Castro Home Builders is a contracting company operating in the Bay Area with over 20 years of experience',
+    description: 'Artistica Painting is a company founded in 2013 whose goal is to provide headache-free painting services all across the Bay Area.',
     start_url: '/',
   }), compress(),],
 });

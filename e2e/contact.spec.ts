@@ -42,8 +42,8 @@ test('should contain a phone number that can be dialed from the site', async ({ 
   await expect(page).toHaveURL(/contact/);
 });
 
-test('should have a clickable link to email hello@castrohomebuilders.com', async ({ page }) => {
-  const contactEmail = page.getByRole('link').filter({ hasText: 'hello@castrohomebuilders.com' });
+test('should have a clickable link to email hello@artisticapainting.com', async ({ page }) => {
+  const contactEmail = page.getByRole('link').filter({ hasText: 'hello@artisticapainting.com' });
 
   await expect(contactEmail).toBeVisible();
   await contactEmail.click();
@@ -62,7 +62,7 @@ test.describe('contact form', () => {
 
   test.beforeEach(async ({ page }) => {
     // set up a route to intercept FormKeep requests and respond with 200
-    await page.route('https://formkeep.com/f/2d33e37c28a5', async (route, request) => {
+    await page.route('https://formkeep.com/f/ca01009dfb12', async (route, request) => {
       console.log(`Request to ${request.url()} intercepted by Playwright`);
       console.log(await request.allHeaders());
       console.log(request.postData());
@@ -72,7 +72,7 @@ test.describe('contact form', () => {
 
   test('should display an error toast with invalid input', async ({ page }) => {
     // explicitly abort requests to FormKeep, just for extra safety
-    await page.route('https://formkeep.com/f/2d33e37c28a5', async (route, request) => {
+    await page.route('https://formkeep.com/f/ca01009dfb12', async (route, request) => {
       console.log(`Request to ${request.url()} intercepted by Playwright`);
       console.log(await request.allHeaders());
       console.log(request.postData());
@@ -91,7 +91,7 @@ test.describe('contact form', () => {
 
   test('should display a success toast and confetti with valid input', async ({ page }) => {
     await page.getByLabel('Full Name').fill('Test Person');
-    await page.getByLabel('Email').fill('test@castrohomebuilders.com');
+    await page.getByLabel('Email').fill('test@artisticapainting.com');
     await page.getByLabel('Message').fill('This is a test');
 
     await page.getByRole('button', { name: 'Submit' }).click();
