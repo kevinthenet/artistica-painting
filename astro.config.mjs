@@ -10,7 +10,7 @@ export default defineConfig({
   site: "https://artisticapainting.com",
   integrations: [robotsTxt(), sitemap(), tailwind(), webmanifest({
     name: 'Artistica Painting',
-    icon: 'public/chb-logo.png',
+    icon: 'public/artistica-logo.png',
     description: 'Artistica Painting is a company founded in 2013 whose goal is to provide headache-free painting services all across the Bay Area.',
     start_url: '/',
   }), compress(),],
