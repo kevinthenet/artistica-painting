@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from './base-test';
 
 test.beforeEach(async ({ page }) => {
   const availablePages = ['/', '/about', '/contact', '/privacy', '/404'];

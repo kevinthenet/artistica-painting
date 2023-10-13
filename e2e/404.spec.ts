@@ -1,5 +1,6 @@
-import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
+
+import { expect, test } from './base-test';
 
 const internalLinks = ['/', '/about', '/contact', '/privacy'];
 
