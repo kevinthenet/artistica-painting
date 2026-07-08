@@ -26,6 +26,7 @@ type ResourceType = {
   etag: string;
   created_by: null;
   uploaded_by: null;
+  fallback_text?: string;
 };
 
 type SearchResult = {
@@ -38,29 +39,40 @@ type SearchResult = {
   rate_limit_remaining: number;
 };
 
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-  secure: true,
-});
+const cloudName = import.meta.env.CLOUDINARY_CLOUD_NAME || process.env.CLOUDINARY_CLOUD_NAME;
+const apiKey = import.meta.env.CLOUDINARY_API_KEY || process.env.CLOUDINARY_API_KEY;
+const apiSecret = import.meta.env.CLOUDINARY_API_SECRET || process.env.CLOUDINARY_API_SECRET;
 
-let photos = [];
+let photos: Partial<ResourceType>[] = [
+  { secure_url: '', public_id: 'fallback', fallback_text: 'Slideshow Placeholder' },
+];
 
-const result: SearchResult = await cloudinary.search
-  .expression('folder:artisticapainting/projects/*')
-  .sort_by('height', 'desc')
-  .sort_by('width', 'desc')
-  .max_results(20)
-  .execute();
+if (cloudName && apiKey && apiSecret) {
+  cloudinary.config({
+    cloud_name: cloudName,
+    api_key: apiKey,
+    api_secret: apiSecret,
+    secure: true,
+  });
 
-photos = result.resources;
+  const result: SearchResult = await cloudinary.search
+    .expression('folder:artisticapainting/projects/*')
+    .sort_by('height', 'desc')
+    .sort_by('width', 'desc')
+    .max_results(20)
+    .execute();
+
+  photos =
+    result.resources.length > 0
+      ? result.resources
+      : [{ secure_url: '', public_id: 'fallback', fallback_text: 'Slideshow Placeholder' }];
+}
 ---
 
 <div
-  class="h-third-screen relative w-full md:h-half-screen"
+  class="relative h-third-screen w-full md:h-half-screen"
   x-data={`
-  { prevImg: ${photos.length - 1},
+  { prevImg: ${photos.length > 0 ? photos.length - 1 : 0},
     currentImg: 0,
     nextImg: 1,
     next() {
@@ -76,25 +88,43 @@ photos = result.resources;
   }`}
 >
   <!-- Carousel wrapper -->
-  <div class="h-third-screen relative overflow-hidden rounded-3xl md:h-half-screen">
+  <div class="relative h-third-screen overflow-hidden rounded-3xl md:h-half-screen">
     {
       photos.map((photo, index) => (
         <div class="duration-700 ease-in-out">
-          <img
-            src={photo.secure_url}
-            class="absolute h-full w-full md:h-auto"
-            alt="Hero slideshow picture"
-            x-data={`
-              { 
-                id: ${index},
-                get isCurrent() {
-                  return this.currentImg === this.id;
-                },
-              }
-            `}
-            x-show="isCurrent"
-            x-cloak
-          />
+          {photo.secure_url ? (
+            <img
+              src={photo.secure_url}
+              class="absolute h-full w-full md:h-auto"
+              alt="Hero slideshow picture"
+              x-data={`
+                { 
+                  id: ${index},
+                  get isCurrent() {
+                    return this.currentImg === this.id;
+                  },
+                }
+              `}
+              x-show="isCurrent"
+              x-cloak
+            />
+          ) : (
+            <div
+              class="bg-slate-100 text-slate-600 absolute flex h-full w-full items-center justify-center px-8 text-center text-lg font-medium"
+              x-data={`
+                { 
+                  id: ${index},
+                  get isCurrent() {
+                    return this.currentImg === this.id;
+                  },
+                }
+              `}
+              x-show="isCurrent"
+              x-cloak
+            >
+              {photo.fallback_text ?? 'Image unavailable'}
+            </div>
+          )}
         </div>
       ))
     }
@@ -120,7 +150,8 @@ photos = result.resources;
           stroke-linecap="round"
           stroke-linejoin="round"
           stroke-width="2"
-          d="M5 1 1 5l4 4"></path>
+          d="M5 1 1 5l4 4"
+        ></path>
       </svg>
       <span class="sr-only">Previous</span>
     </span>
@@ -145,7 +176,8 @@ photos = result.resources;
           stroke-linecap="round"
           stroke-linejoin="round"
           stroke-width="2"
-          d="m1 9 4-4-4-4"></path>
+          d="m1 9 4-4-4-4"
+        ></path>
       </svg>
       <span class="sr-only">Next</span>
     </span>

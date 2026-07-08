@@ -50,16 +50,23 @@ All commands are run from the root of the project, from a terminal:
 
 ## Local development
 
-In order to get things working locally, you may need to create the following file:
+Local development uses Cloudinary credentials for the slideshow asset pipeline.
 
-> .env
->
-> ```bash
-> export ENVIRONMENT_VAR='<env_var>'
-> ```
+Copy the example file and fill in your values:
 
-Then, before doing `pnpm start` run:
-
+```bash
+cp .env.example .env
 ```
-source .env
+
+Then edit `.env` and set:
+
+- `CLOUDINARY_CLOUD_NAME`
+- `CLOUDINARY_API_KEY`
+- `CLOUDINARY_API_SECRET`
+
+After that, run:
+
+```bash
+pnpm install
+pnpm dev
 ```
