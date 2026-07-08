@@ -2,7 +2,7 @@ name: Synthetic checks
 run-name: ${{github.run_id}}-${{ github.sha }}
 on:
   schedule:
-    - cron: '0 0 * * *' # once a day
+    - cron: "0 0 * * *" # once a day
   workflow_dispatch:
 
 permissions:
@@ -29,6 +29,11 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
