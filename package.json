@@ -38,7 +38,6 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.7.3",
-    "@playwright/test": "^1.37.1",
-    "wrangler": "^3.7.0"
+    "@playwright/test": "^1.37.1"
   }
 }
