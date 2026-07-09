@@ -29,6 +29,8 @@ jobs:
 
       - name: setup PNPM
         uses: pnpm/action-setup@v6
+        with:
+          version: latest
 
       - name: Install packages
         run: pnpm install
