@@ -1,5 +1,5 @@
 name: Continuous Integration (CI)
-run-name: ${{ github.sha }}
+
 on:
   push:
     paths:
@@ -20,16 +20,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v7
+
       - name: Set up Node.js
         uses: actions/setup-node@v6
         with:
           node-version: 24
+
       - name: setup PNPM
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v6
+
       - name: Install packages
         run: pnpm install
+
       - name: Run Astro checks
         run: pnpm check
+
       - name: Run Linter
         run: pnpm lint:check

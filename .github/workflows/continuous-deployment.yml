@@ -1,5 +1,5 @@
 name: Continuous Deploy (CD)
-run-name: ${{ github.sha }}
+
 on:
   # Trigger the workflow every time the CI workflow completes
   # this workflow will be handling completion states
@@ -10,9 +10,6 @@ on:
       - completed
     branches:
       - main
-  schedule:
-    # we build even if there are no changes code-wise, since we might have new pictures to display
-    - cron: '0 0 * * 1' # once a week on monday
   # Allow this run this workflow manually from the Actions tab on GitHub.
   workflow_dispatch:
 
@@ -27,14 +24,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout your repository using git
-        uses: actions/checkout@v3
+        uses: actions/checkout@v7
       - name: Install, build, and upload your site
-        uses: withastro/action@v0
+        uses: withastro/action@v6
         with:
-          node-version: 20
+          node-version: 24
           path: .
-          package-manager: pnpm
-          pnpm-version: 8.7.4
+          package-manager: pnpm@latest
         env:
           CLOUDINARY_CLOUD_NAME: ${{ secrets.CLOUDINARY_CLOUD_NAME }}
           CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
@@ -49,4 +45,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4
