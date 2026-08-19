@@ -21,7 +21,11 @@
       >
         <!-- Full name input -->
         <div>
-          <label for="name" class="sr-only">Full name</label>
+          <label
+            for="name"
+            class="sr-only"
+            >Full name</label
+          >
           <input
             type="text"
             name="name"
@@ -34,7 +38,11 @@
 
         <!-- Email input -->
         <div>
-          <label for="email" class="sr-only">Email</label>
+          <label
+            for="email"
+            class="sr-only"
+            >Email</label
+          >
           <input
             type="email"
             name="email"
@@ -47,17 +55,26 @@
 
         <!-- Message textarea -->
         <div>
-          <label for="message" class="sr-only">Message</label>
+          <label
+            for="message"
+            class="sr-only"
+            >Message</label
+          >
           <textarea
             name="message"
             id="message"
             rows="3"
             class="block w-full appearance-none rounded-md border-0 bg-primary-50 px-4 py-4 text-base ring-1 ring-primary-900/40 transition placeholder:text-primary-950/60 hover:ring-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-600 dark:bg-primary-950 dark:ring-primary-200/40 dark:placeholder:text-primary-200/60 dark:hover:ring-primary-400 dark:focus:ring-primary-400"
-            placeholder="Message"></textarea>
+            placeholder="Message"
+          ></textarea>
         </div>
 
         <div class="hidden">
-          <label for="subscribe_ca01009dfb12_43610" aria-hidden="true">Subscribe</label>
+          <label
+            for="subscribe_ca01009dfb12_43610"
+            aria-hidden="true"
+            >Subscribe</label
+          >
           <input
             type="checkbox"
             name="subscribe_ca01009dfb12_43610"
@@ -66,7 +83,12 @@
           />
         </div>
 
-        <div class="g-recaptcha" data-sitekey="6LfF8jooAAAAAI9CMz43gFtWbQCRHC3SoCVLUQa1"></div>
+        <div
+          class="g-recaptcha"
+          data-sitekey="6LdKkY4tAAAAANH6DDTIDhl9kalJ3sWOv8s5BNl3"
+          data-action="contact"
+        >
+        </div>
 
         <div>
           <button
@@ -81,9 +103,13 @@
   </div>
 </section>
 
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script
+  src="https://www.google.com/recaptcha/enterprise.js"
+  async
+  defer
+></script>
 
-<script>
+<script is:inline type="module">
   import confetti from 'canvas-confetti';
 
   const confettiOptions = {
@@ -92,16 +118,17 @@
   };
   const formFields = ['name', 'email', 'message'];
 
-  const validateForm = (): boolean => {
-    // check for empty values
-    const formValues = formFields.map(
-      (field) => (document.getElementById(field) as HTMLInputElement)!.value
-    );
+  const getInputValue = (field) => {
+    const element = document.getElementById(field);
+    return element && 'value' in element ? element.value : '';
+  };
+
+  const validateForm = () => {
+    const formValues = formFields.map((field) => getInputValue(field));
     const validFormValues = formValues.every((val) => !!val);
 
-    // check for email validity (as simply as possible)
     const emailRegex = new RegExp(/.*@.*\..*/);
-    const emailVal = (document.getElementById('email') as HTMLInputElement)!.value;
+    const emailVal = getInputValue('email');
     const validEmail = emailRegex.test(emailVal);
 
     return [validFormValues, validEmail].every((val) => !!val);
@@ -109,17 +136,20 @@
 
   const resetForm = () => {
     formFields.forEach((field) => {
-      (document.getElementById(field) as HTMLInputElement)!.value = '';
+      const element = document.getElementById(field);
+      if (element && 'value' in element) {
+        element.value = '';
+      }
     });
   };
 
-  const showToast = (success: boolean) => {
+  const showToast = (success) => {
     const toastId = success ? 'success-toast' : 'failure-toast';
     const toast = document.getElementById(toastId);
 
-    toast!.classList.remove('hidden');
+    toast?.classList.remove('hidden');
     setTimeout(() => {
-      toast!.classList.add('hidden');
+      toast?.classList.add('hidden');
     }, 5000);
   };
 
@@ -127,19 +157,18 @@
     const toasts = document.querySelectorAll('.toast');
 
     toasts.forEach((toast) => {
-      toast!.classList.add('hidden');
+      toast?.classList.add('hidden');
     });
   };
 
-  const submitForm = async (e: Event) => {
+  const submitForm = async (e) => {
     e.preventDefault();
-    // if a toast is currently being shown (e.g. error toast), reset it
     hideToasts();
 
     const validFormInput = validateForm();
 
     if (validFormInput) {
-      const formData = new FormData(document.getElementById('contact-form') as HTMLFormElement);
+      const formData = new FormData(document.getElementById('contact-form'));
 
       const response = await fetch('https://formkeep.com/f/ca01009dfb12', {
         method: 'POST',
