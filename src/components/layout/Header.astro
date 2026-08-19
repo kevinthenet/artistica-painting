@@ -1,4 +1,8 @@
 ---
+import { Image } from 'astro:assets';
+import logo from '../../assets/artistica-logo.png';
+import logoInverted from '../../assets/artistica-logo-inverted.png';
+
 const links = [
   {
     name: 'Home',
@@ -30,9 +34,18 @@ const links = [
         class="rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-950 dark:group-focus-visible:outline-primary-200"
       >
         <span class="sr-only">Artistica Painting</span>
-        <img
+        <Image
+          x-cloak
           class="h-24 w-auto"
-          :src="$store.theme.isDark ? '/artistica-logo-inverted.png' : '/artistica-logo.png'"
+          :class="{ hidden: $store.theme.isDark }"
+          src={logo}
+          alt="Artistica Painting Logo"
+        />
+        <Image
+          x-cloak
+          class="h-24 w-auto"
+          :class="{ hidden: !$store.theme.isDark }"
+          src={logoInverted}
           alt="Artistica Painting Logo"
         />
       </a>

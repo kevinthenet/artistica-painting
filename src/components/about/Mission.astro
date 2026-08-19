@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import aboutImage from '../../assets/about.jpg';
+
 const stats = [
   {
     name: 'Established',
@@ -10,12 +13,11 @@ const stats = [
 <section class="py-16 sm:py-20">
   <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
     <div class="grid gap-16 lg:grid-cols-2 lg:gap-24">
-      <img
+      <Image
         class="mx-auto h-auto w-full max-w-xl rounded-3xl"
-        width="576"
-        height="864"
-        src="https://res.cloudinary.com/kevin-castro/image/upload/v1695160675/artisticapainting/team.jpg"
+        src={aboutImage}
         alt="The artistica painting team"
+        loading="lazy"
       />
       <div class="flex flex-col gap-10">
         <!-- Mission description -->
