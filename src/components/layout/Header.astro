@@ -31,7 +31,7 @@ const links = [
     <div class="flex">
       <a
         href="/"
-        class="rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-950 dark:group-focus-visible:outline-primary-200"
+        class="focus-visible:outline-primary-950 dark:group-focus-visible:outline-primary-200 rounded-md focus-visible:outline focus-visible:outline-2"
       >
         <span class="sr-only">Artistica Painting</span>
         <Image
@@ -56,7 +56,7 @@ const links = [
       <!-- Toggle theme mode -->
       <button
         type="button"
-        class="inline-flex h-14 w-14 items-center justify-center rounded-full text-primary-950 ring-primary-950 transition hover:bg-primary-500/10 focus:outline-none focus-visible:ring-2 dark:text-primary-200 dark:hover:bg-primary-400/10"
+        class="text-primary-950 ring-primary-950 hover:bg-primary-500/10 dark:text-primary-200 dark:hover:bg-primary-400/10 inline-flex h-14 w-14 items-center justify-center rounded-full transition focus:outline-none focus-visible:ring-2"
         x-data
         @click="$store.theme.toggle()"
       >
@@ -92,7 +92,7 @@ const links = [
       <!-- Toggle menu -->
       <button
         type="button"
-        class="inline-flex h-14 w-14 items-center justify-center rounded-full text-primary-950 ring-primary-950 transition hover:bg-primary-500/10 focus:outline-none focus-visible:ring-2 dark:text-primary-200 dark:hover:bg-primary-400/10"
+        class="text-primary-950 ring-primary-950 hover:bg-primary-500/10 dark:text-primary-200 dark:hover:bg-primary-400/10 inline-flex h-14 w-14 items-center justify-center rounded-full transition focus:outline-none focus-visible:ring-2"
         @click="open = !open"
         @mousedown="if (open) $event.preventDefault()"
         aria-controls="website-menu"
@@ -137,12 +137,12 @@ const links = [
     x-collapse
     x-collapse.duration.500ms
   >
-    <div class="grid grid-cols-1 gap-16 pb-24 pt-6 lg:grid-cols-2 lg:pt-12">
+    <div class="grid grid-cols-1 gap-16 pt-6 pb-24 lg:grid-cols-2 lg:pt-12">
       <div
-        class="hidden flex-col justify-center rounded-3xl bg-primary-500/10 px-6 dark:bg-primary-400/10 lg:flex"
+        class="bg-primary-500/10 dark:bg-primary-400/10 hidden flex-col justify-center rounded-3xl px-6 lg:flex"
       >
         <p
-          class="w-full text-left text-xl italic leading-loose text-primary-950/70 dark:text-primary-200/70"
+          class="text-primary-950/70 dark:text-primary-200/70 w-full text-left text-xl leading-loose italic"
         >
           <span class="font-medium">Artistica Painting</span> is a painting company with a proven track
           record and more than 10 years of experience transforming the Bay Area, one brushstroke at a
@@ -151,19 +151,19 @@ const links = [
       </div>
 
       <!-- Navigation -->
-      <nav class="flex flex-col gap-1 divide-y divide-primary-900/10 dark:divide-primary-300/10">
+      <nav class="divide-primary-900/10 dark:divide-primary-300/10 flex flex-col gap-1 divide-y">
         {
           links.map((link) => (
             <a
               href={link.href}
-              class="group inline-flex py-6 text-3xl font-medium tracking-tight text-primary-950 transition focus-visible:outline-none dark:text-primary-200 sm:py-8 sm:text-4xl"
+              class="group text-primary-950 dark:text-primary-200 inline-flex py-6 text-3xl font-medium tracking-tight transition focus-visible:outline-none sm:py-8 sm:text-4xl"
             >
-              <div class="flex flex-1 items-center justify-between rounded-3xl group-focus-visible:outline group-focus-visible:outline-2 group-focus-visible:outline-offset-2 group-focus-visible:outline-primary-950 dark:group-focus-visible:outline-primary-200">
+              <div class="group-focus-visible:outline-primary-950 dark:group-focus-visible:outline-primary-200 flex flex-1 items-center justify-between rounded-3xl group-focus-visible:outline group-focus-visible:outline-2 group-focus-visible:outline-offset-2">
                 <div class="flex items-center gap-6">
                   <span class="group-hover:underline">{link.name}</span>
                 </div>
                 <svg
-                  class="h-6 w-6 text-primary-600 dark:text-primary-400 sm:h-8 sm:w-8"
+                  class="text-primary-600 dark:text-primary-400 h-6 w-6 sm:h-8 sm:w-8"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="currentColor"

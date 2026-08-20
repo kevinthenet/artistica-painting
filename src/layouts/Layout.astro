@@ -15,52 +15,21 @@ const { description, title } = Astro.props;
 ---
 
 <!doctype html>
-<html
-  lang="en"
-  x-cloak
-  x-data
-  :class="{ 'dark': $store.theme.isDark }"
->
+<html lang="en" x-cloak x-data :class="{ 'dark': $store.theme.isDark }">
   <head>
     <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="/artistica-logo-favicon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="/artistica-logo-favicon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="/artistica-logo-favicon.png"
-    />
-    <link
-      rel="manifest"
-      href="/sitemap-index.xml"
-    />
-    <meta
-      name="generator"
-      content={Astro.generator}
-    />
-    <meta
-      name="description"
-      content={description}
-    />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/artistica-logo-favicon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/artistica-logo-favicon.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/artistica-logo-favicon.png" />
+    <link rel="manifest" href="/sitemap-index.xml" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
     <title>{title}</title>
     <ClientRouter />
   </head>
   <body
-    class="bg-primary-50 text-primary-950 antialiased transition dark:bg-primary-950 dark:text-primary-200"
+    class="bg-primary-50 text-primary-950 dark:bg-primary-950 dark:text-primary-200 antialiased transition"
   >
     <Header />
     <main transition:animate="fade">
@@ -74,11 +43,7 @@ const { description, title } = Astro.props;
     </style>
 
     <!-- Google tag (gtag.js) -->
-    <script
-      is:inline
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-Y219PLRS3V"
-    ></script>
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-Y219PLRS3V"></script>
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag() {

@@ -24,7 +24,7 @@ const stats = [
         <div class="space-y-8 sm:space-y-12">
           <h2 class="text-3xl font-medium tracking-tight sm:text-4xl">Our Mission</h2>
           <div class="space-y-6">
-            <p class="text-base text-primary-950/70 dark:text-primary-200/70 sm:text-lg">
+            <p class="text-primary-950/70 dark:text-primary-200/70 text-base sm:text-lg">
               At Artistica Painting, we understand that your space is a reflection of your unique
               style and personality. That's why we go above and beyond to deliver exceptional
               painting solutions tailored to your needs. Our team of skilled professionals combines
@@ -38,7 +38,7 @@ const stats = [
         <dl class="grid grid-cols-1 gap-6 sm:grid-cols-2">
           {
             stats.map((stat) => (
-              <div class="rounded-3xl border border-primary-900/10 p-6 dark:border-primary-300/10">
+              <div class="border-primary-900/10 dark:border-primary-300/10 rounded-3xl border p-6">
                 <dt class="text-base">{stat.name}</dt>
                 <dd class="text-3xl font-medium tracking-tight">{stat.value}</dd>
               </div>

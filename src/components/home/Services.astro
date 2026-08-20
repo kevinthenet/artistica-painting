@@ -67,12 +67,12 @@ const serviceCategories = [
                     aria-expanded="false"
                     x-bind:aria-expanded="isOpen.toString()"
                   >
-                    <div class="flex items-center justify-between rounded-3xl group-focus-visible:outline group-focus-visible:outline-2 group-focus-visible:outline-offset-2 group-focus-visible:outline-primary-950 dark:group-focus-visible:outline-primary-200">
+                    <div class="group-focus-visible:outline-primary-950 dark:group-focus-visible:outline-primary-200 flex items-center justify-between rounded-3xl group-focus-visible:outline group-focus-visible:outline-2 group-focus-visible:outline-offset-2">
                       <span class="font-medium">{category.name}</span>
                       <span class="ml-6 flex h-7 items-center">
                         <span class="sr-only">{`Expand ${category.name}`}</span>
                         <svg
-                          class="h-6 w-6 rotate-0 transform text-primary-600 transition duration-150 ease-in-out dark:text-primary-400"
+                          class="text-primary-600 dark:text-primary-400 h-6 w-6 rotate-0 transform transition duration-150 ease-in-out"
                           x-bind:class="{ '-rotate-180': isOpen, 'rotate-0': !isOpen }"
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 24 24"
@@ -85,8 +85,8 @@ const serviceCategories = [
                     </div>
                   </button>
                 </dt>
-                <dd class="pb-6 pr-6" id={category.id} x-cloak x-show="isOpen" x-collapse>
-                  <ul class="list-none text-center text-base text-primary-950/70 dark:text-primary-200/70">
+                <dd class="pr-6 pb-6" id={category.id} x-cloak x-show="isOpen" x-collapse>
+                  <ul class="text-primary-950/70 dark:text-primary-200/70 list-none text-center text-base">
                     {category.services.map((service) => (
                       <li>{service}</li>
                     ))}
