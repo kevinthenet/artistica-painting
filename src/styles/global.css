@@ -1,0 +1,6 @@
+@import 'tailwindcss';
+@config '../../tailwind.config.mjs';
+
+/* v4 no longer reads `darkMode` from the JS config; this replicates the
+   previous class-based strategy toggled by Alpine in Layout.astro. */
+@custom-variant dark (&:where(.dark, .dark *));
